@@ -2,7 +2,7 @@ import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 import css from "./App.module.css"; 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const contactsArray = [
     {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -13,8 +13,23 @@ const contactsArray = [
 
 function App() {
 
+//TODO: Значення з інпута SearchBox
 const [value, setValue] = useState("");
-const [contacts, setContacts] = useState(contactsArray);
+
+
+//TODO:  Зчитуємо значення за ключем
+const [contacts, setContacts] = useState(() => {
+    const savedContacts = window.localStorage.getItem("savedUsers");
+
+    if (savedContacts !== null) {return savedContacts}
+    return JSON.parse(contactsArray)
+});
+
+//TODO: Додаємо код запису в локальне сховище
+useEffect(() => {
+    window.localStorage.setItem("savedUsers", JSON.stringify(contacts))
+}, [contacts]);
+
 
 const addContact = (newContact) => {
     setContacts((prevContacts) => {
@@ -22,14 +37,17 @@ const addContact = (newContact) => {
     });
 };
 
-const deleteContact = (taskId) => {
+const deleteContact = (contactId) => {
     setContacts((prevContacts) => {
-        return prevContacts.filter((task) => task.id !== taskId);
+        return prevContacts.filter((contact) => contact.id !== contactId);
     })
 }
 
-const visibleContacts = contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-);
+
+//TODO: Передаємо в ContactList
+// const visibleContacts = contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+// );
+const visibleContacts = (contacts) => {contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) )}
 
 
 
