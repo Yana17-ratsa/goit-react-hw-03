@@ -1,4 +1,5 @@
 import React from 'react'
+// import 'react-native-get-random-values'
 import ReactDOM from 'react-dom/client'
 import App from '../src/components/App/App'
 import './index.css'
