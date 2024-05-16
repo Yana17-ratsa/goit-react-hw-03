@@ -16,21 +16,29 @@ function App() {
 const [value, setValue] = useState("");
 const [contacts, setContacts] = useState(contactsArray);
 
+const addContact = (newContact) => {
+    setContacts((prevContacts) => {
+        return [...prevContacts, newContact];
+    });
+};
+
+const deleteContact = (taskId) => {
+    setContacts((prevContacts) => {
+        return prevContacts.filter((task) => task.id !== taskId);
+    })
+}
+
 const visibleContacts = contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
 );
-
-
-  
-
 
 
 
     return (
         <div className={css.container}>
             <h1>Phonebook</h1>
-            <ContactForm />
+            <ContactForm onAdd={addContact}/>
             <SearchBox value={value} onFilter={setValue}/>   
-            <ContactList  contacts={visibleContacts} setContacts={setContacts}/>
+            <ContactList  contacts={visibleContacts} setContacts={setContacts} onDelete = {deleteContact}/>
         </div>
 
     )

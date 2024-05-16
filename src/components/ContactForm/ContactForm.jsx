@@ -19,12 +19,15 @@ const FormSchema = object({
 })
 
 
-const ContactForm = () => {
+const ContactForm = ({onAdd}) => {
 
     const nameField = useId();
     const numberField = useId();
 
-    const handleSubmit = (values, actions) => {}
+    const handleSubmit = (values, actions) => {
+        onAdd({values});
+        actions.resetForm();
+    }
 
 
     return (

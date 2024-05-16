@@ -2,7 +2,7 @@ import { IoPerson } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import css from "./Contact.module.css";
 
-const Contact = ({data}) => {
+const Contact = ({data, onDelete}) => {
     return (
         <div className={css.item}>
             <div className={css.infoSide}>
@@ -15,7 +15,7 @@ const Contact = ({data}) => {
                     <p>{data.number}</p>
                 </div>
             </div>  
-            <button type="button">Delete</button>
+            <button type="button" onClick={() =>  onDelete(data.id)}>Delete</button>
         </div>
     )
 }
