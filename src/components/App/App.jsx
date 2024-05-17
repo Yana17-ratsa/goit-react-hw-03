@@ -45,9 +45,7 @@ const deleteContact = (contactId) => {
 
 
 //TODO: Передаємо в ContactList
-// const visibleContacts = contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-// );
-const visibleContacts = (contacts) => {contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) )}
+const visibleContacts = (contacts) => { return contacts.filter((contact) => contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) )}
 
 
 
