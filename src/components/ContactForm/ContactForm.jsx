@@ -1,7 +1,7 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 // import 'react-native-get-random-values'
 import { nanoid } from 'nanoid';
-// import {object, string, number } from "yup";
+import * as Yup from "yup";
 import { useId } from "react";
 
 
@@ -11,16 +11,12 @@ const initialValues = {
     id: 'id' + nanoid(),
 }
 
-//!
-// const FormSchema = object({
-//     name: string().min(3, "Too short!").max(50, "Too long!").required("Required!"),
-//     number: number().min(3, "Too short!").max(50, "Too long!").required("Required!"),
-//     id: string().min(3, "Too short!").max(50, "Too long!").required("Required!"),
-// })
+const FormSchema = Yup.object({
+    name: Yup.string().min(3, "Too short!").max(50, "Too long!").required("Required!"),
+    number: Yup.number().min(3, "Too short!").max(50, "Too long!").required("Required!"),
+    id: Yup.string().min(3, "Too short!").max(50, "Too long!").required("Required!"),
+})
 
-//validationSchema={FormSchema} (pastein Formik)
-//add ErrorMessage in import
-//!
 
 
 const ContactForm = ({onAdd}) => {
@@ -35,18 +31,18 @@ const ContactForm = ({onAdd}) => {
 
 
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} validationSchema={FormSchema} onSubmit={handleSubmit}>
             <Form>
                 <div>
                     <label htmlFor={nameField}>Name</label>
                     <Field type="text" name="name" id={nameField}/>
-                    {/* <ErrorMessage name="name" component="span"/> */}
+                    <ErrorMessage name="name" component="span"/>
                 </div>
 
                 <div>
                     <label htmlFor={numberField}>Number</label>
                     <Field type="text" name="number" id={numberField}/>
-                    {/* <ErrorMessage name="number" component="span"/> */}
+                    <ErrorMessage name="number" component="span"/>
                 </div>
             </Form>
         </Formik>
