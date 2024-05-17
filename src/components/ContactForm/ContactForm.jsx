@@ -44,6 +44,9 @@ const ContactForm = ({onAdd}) => {
                     <Field type="text" name="number" id={numberField}/>
                     <ErrorMessage name="number" component="span"/>
                 </div>
+
+                <button type="submit">Submit</button>
+                
             </Form>
         </Formik>
     )
