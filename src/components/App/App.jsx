@@ -43,19 +43,20 @@ function App() {
   };
 
   //TODO: Передаємо в ContactList
-  const visibleContacts = contacts => {
+  const visibleContacts = () => {
     return contacts.filter(contact =>
       contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
     );
   };
 
+  
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
       <ContactForm onAdd={addContact} />
       <SearchBox value={value} onFilter={setValue} />
       <ContactList
-        contacts={visibleContacts}
+        contacts={visibleContacts()}
         setContacts={setContacts}
         onDelete={deleteContact}
       />
