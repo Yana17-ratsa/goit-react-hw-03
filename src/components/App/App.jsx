@@ -3,6 +3,7 @@ import SearchBox from '../SearchBox/SearchBox';
 import ContactList from '../ContactList/ContactList';
 import css from './App.module.css';
 import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 const contactsArray = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -31,6 +32,7 @@ function App() {
   }, [contacts]);
 
   const addContact = newContact => {
+    newContact.id = nanoid();
     setContacts(prevContacts => {
       return [...prevContacts, newContact];
     });
@@ -49,7 +51,6 @@ function App() {
     );
   };
 
-  
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
