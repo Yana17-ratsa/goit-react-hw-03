@@ -45,11 +45,15 @@ function App() {
   };
 
   //TODO: Передаємо в ContactList
-  const visibleContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-    );
-  };
+  // const visibleContacts = () => {
+  //   return contacts.filter(contact =>
+  //     contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+  //   );
+  // };
+
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(value.toLowerCase())
+  );
 
   return (
     <div className={css.container}>

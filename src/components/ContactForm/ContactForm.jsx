@@ -24,7 +24,7 @@ const ContactForm = ({ onAdd }) => {
   const numberField = useId();
 
   const handleSubmit = (values, actions) => {
-    onAdd({ values });
+    onAdd(values);
     actions.resetForm();
   };
 
