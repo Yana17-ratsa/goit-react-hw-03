@@ -3,7 +3,6 @@ import SearchBox from '../SearchBox/SearchBox';
 import ContactList from '../ContactList/ContactList';
 import css from './App.module.css';
 import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 
 const contactsArray = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -32,7 +31,7 @@ function App() {
   }, [contacts]);
 
   const addContact = newContact => {
-    newContact.id = nanoid();
+    // newContact.id = nanoid();
     setContacts(prevContacts => {
       return [...prevContacts, newContact];
     });
@@ -51,7 +50,7 @@ function App() {
   //   );
   // };
 
-  const visibleContacts = contacts.filter(contact =>
+  const visibleContacts = contacts.filter((contact) => 
     contact.name.toLowerCase().includes(value.toLowerCase())
   );
 
@@ -61,7 +60,7 @@ function App() {
       <ContactForm onAdd={addContact} />
       <SearchBox value={value} onFilter={setValue} />
       <ContactList
-        contacts={visibleContacts()}
+        contacts={visibleContacts}
         setContacts={setContacts}
         onDelete={deleteContact}
       />

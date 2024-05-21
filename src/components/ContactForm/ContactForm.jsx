@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import 'react-native-get-random-values'
 import * as Yup from 'yup';
 import { useId } from 'react';
+import { nanoid } from 'nanoid';
 
 const initialValues = {
   name: '',
@@ -24,7 +24,11 @@ const ContactForm = ({ onAdd }) => {
   const numberField = useId();
 
   const handleSubmit = (values, actions) => {
-    onAdd(values);
+    onAdd({
+      id: nanoid(),
+      name: values.name,
+      number: values.number,
+    });
     actions.resetForm();
   };
 
